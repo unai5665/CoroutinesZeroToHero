@@ -8,7 +8,7 @@ import retrofit2.http.Path
 interface ApiServices {
 
     @GET("/api//search({name}")
-    fun getSuperheroes(@Path("name") superheroName:String): Response<SuperHeroDataResponse>
+    suspend fun getSuperheroes(@Path("name") superheroName:String): Response<SuperHeroDataResponse>
 }
 
 data class SuperHeroDataResponse(@SerializedName("response") val response:String)
