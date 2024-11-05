@@ -29,13 +29,13 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoroutinesZeroToHeroTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-                    // Usamos un estado para almacenar la lista de usuarios
+
                     val users = remember { mutableStateListOf<UserResponse>() }
 
-                    // Cargar los usuarios
+
                     loadUsers(users)
 
-                    // Mostrar la lista de usuarios
+
                     UserList(users)
                 }
             }
