@@ -8,6 +8,8 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -61,11 +63,14 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UserList(users: List<UserResponse>) {
-    // Mostrar la lista de usuarios
-    for (user in users) {
-        Text(
-            text = "${user.name} - ${user.email}",
-            modifier = Modifier.padding(8.dp)
-        )
+
+    LazyColumn {
+        items(users) { user ->
+            Text(
+                text = "${user.name} - ${user.email}",
+                modifier = Modifier.padding(8.dp)
+            )
+        }
     }
 }
+
