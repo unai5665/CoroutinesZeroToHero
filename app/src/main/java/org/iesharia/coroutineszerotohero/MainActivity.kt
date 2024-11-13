@@ -62,9 +62,10 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun UserList(users: List<UserResponse>) {
-
-    LazyColumn {
+fun UserList(users: List<UserResponse>, modifier: Modifier = Modifier) {
+    LazyColumn(
+        modifier = modifier.padding(top = 16.dp)
+    ) {
         items(users) { user ->
             Text(
                 text = "${user.name} - ${user.email}",
@@ -73,4 +74,5 @@ fun UserList(users: List<UserResponse>) {
         }
     }
 }
+
 
