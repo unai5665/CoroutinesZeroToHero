@@ -2,7 +2,7 @@ package org.iesharia.coroutineszerotohero
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
+
 
 object RetrofitHelper {
     private const val URL = "https://jsonplaceholder.typicode.com"

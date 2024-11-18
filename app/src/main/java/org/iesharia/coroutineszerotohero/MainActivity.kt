@@ -35,7 +35,7 @@ class MainActivity : ComponentActivity() {
 
                     loadUsers(users)
 
-                    // Asegúrate de que la lista se pueda desplazar
+
                     UserList(users)
                 }
             }
@@ -61,10 +61,10 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UserList(users: List<UserResponse>, modifier: Modifier = Modifier) {
-    // Asegúrate de que la lista ocupe todo el espacio disponible para permitir el scroll
+
     LazyColumn(
         modifier = modifier
-            .fillMaxSize() // Esto asegura que ocupe todo el tamaño disponible
+            .fillMaxSize()
             .padding(8.dp)
     ) {
         items(users) { user ->
@@ -78,7 +78,7 @@ fun UserDetailCard(user: UserResponse) {
     Surface(
         modifier = Modifier
             .padding(8.dp)
-            .fillMaxSize(),  // Asegura que cada tarjeta ocupe el espacio necesario
+            .fillMaxSize(),
         shadowElevation = 4.dp
     ) {
         Text(
