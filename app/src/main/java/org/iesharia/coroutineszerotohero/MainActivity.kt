@@ -31,13 +31,11 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoroutinesZeroToHeroTheme {
                 Surface(modifier = Modifier.fillMaxSize()) {
-
                     val users = remember { mutableStateListOf<UserResponse>() }
-
 
                     loadUsers(users)
 
-
+                    // Asegúrate de que la lista se pueda desplazar
                     UserList(users)
                 }
             }
@@ -63,16 +61,38 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun UserList(users: List<UserResponse>, modifier: Modifier = Modifier) {
+    // Asegúrate de que la lista ocupe todo el espacio disponible para permitir el scroll
     LazyColumn(
-        modifier = modifier.padding(top = 16.dp)
+        modifier = modifier
+            .fillMaxSize() // Esto asegura que ocupe todo el tamaño disponible
+            .padding(8.dp)
     ) {
         items(users) { user ->
-            Text(
-                text = "${user.name} - ${user.email}",
-                modifier = Modifier.padding(8.dp)
-            )
+            UserDetailCard(user)
         }
     }
 }
 
-
+@Composable
+fun UserDetailCard(user: UserResponse) {
+    Surface(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxSize(),  // Asegura que cada tarjeta ocupe el espacio necesario
+        shadowElevation = 4.dp
+    ) {
+        Text(
+            text = buildString {
+                append("ID: ${user.id}\n")
+                append("Nombre: ${user.name}\n")
+                append("Usuario: ${user.username}\n")
+                append("Email: ${user.email}\n")
+                append("Dirección:\n  Calle: ${user.address.street}, Suite: ${user.address.suite}, Ciudad: ${user.address.city}, CP: ${user.address.zipcode}\n")
+                append("Teléfono: ${user.phone}\n")
+                append("Sitio web: ${user.website}\n")
+                append("Empresa:\n  Nombre: ${user.company.name}, Frase: ${user.company.catchPhrase}, BS: ${user.company.bs}")
+            },
+            modifier = Modifier.padding(16.dp)
+        )
+    }
+}
